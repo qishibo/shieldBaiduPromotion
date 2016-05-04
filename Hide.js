@@ -18,7 +18,20 @@ var qii404 = {
      */
     blackLength: 10,
 
-    init: function(){
+    /*
+     * 搜索动作是否已经绑定
+     */
+    actionBinded: false,
+
+    /*
+     * 点击、enter动作进行搜索之后，等待该时间,再次进行屏蔽
+     * 网速快的可以设置小一点
+     */
+    waitResultTime: 1000,
+
+    init: function() {
+
+        this.bindAction();
 
         console.log('start...');
 
@@ -35,6 +48,30 @@ var qii404 = {
                 console.log(idName, ad);
             }
 
+        }
+    },
+
+    bindAction: function() {
+        if (!this.actionBinded) {
+
+            this.actionBinded = true;
+            var this_ = this;
+
+            // 绑定点击搜索按钮的动作
+            document.getElementById('su').addEventListener('click', function(){
+                setTimeout(function(){
+                    this_.init();
+                }, this_.waitResultTime);
+            });
+
+            // 绑定enter键的动作
+            document.body.addEventListener('keydown', function(e){
+                if (e.keyCode == 13) {
+                    setTimeout(function(){
+                        this_.init();
+                    }, this_.waitResultTime);
+                }
+            });
         }
     }
 }
