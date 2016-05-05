@@ -15,52 +15,57 @@ var qii404 = {
     blackList: ['3', '4'],
 
     /*
-     * 针对每个id前缀，强制跑多少次id模拟
+     * 每个id前缀，强制跑多少次id模拟
      */
     blackLength: 10,
 
     /*
-     * 搜索动作是否已经绑定
+     * 初始化
      */
-    actionBinded: false,
-
     init: function() {
 
         this.bindAction();
+        this.removeAds();
+    },
+
+    /*
+     * 清理
+     */
+    removeAds: function() {
 
         console.log('start...');
+
+        var ad;
 
         for (var i in this.blackList) {
 
             for (var j = 1; j < this.blackLength; j++) {
+
                 var idName = this.blackList[i] + '00' + j;
-                var ad;
 
                 if (ad = document.getElementById(idName)) {
                     ad.style.display = 'none';
                     console.log(idName, ad);
                 }
             }
-
         }
 
         // 右侧广告直接去掉
         document.querySelector('#content_right').style.display = 'none';
     },
 
+    /*
+     * 绑定
+     */
     bindAction: function() {
-        if (!this.actionBinded) {
 
-            this.actionBinded = true;
-            var this_ = this;
+        var this_ = this;
 
-            var observer = new MutationObserver(function() {
-                this_.init();
-            });
+        var observer = new MutationObserver(function() {
+            this_.removeAds();
+        });
 
-            // var config = { attributes: true, childList: true, characterData: true };
-            observer.observe(document.querySelector('#wrapper_wrapper'), {'childList': true});
-        }
+        observer.observe(document.querySelector('#wrapper_wrapper'), {'childList': true});
     }
 }
 
