@@ -10,16 +10,6 @@
 var qii404 = {
 
     /*
-     * id黑名单前缀
-     */
-    blackList: ['3', '4'],
-
-    /*
-     * 每个id前缀，强制跑多少次id模拟
-     */
-    blackLength: 10,
-
-    /*
      * 初始化
      */
     init: function() {
@@ -35,19 +25,11 @@ var qii404 = {
 
         console.log('start...');
 
-        var ad;
+        var ads = document.querySelectorAll('#content_left>div:not([class*="result"]):not([class="leftBlock"])');
 
-        for (var i in this.blackList) {
-
-            for (var j = 1; j < this.blackLength; j++) {
-
-                var idName = this.blackList[i] + '00' + j;
-
-                if (ad = document.getElementById(idName)) {
-                    ad.style.display = 'none';
-                    console.log(idName, ad);
-                }
-            }
+        for (var i = 0; i < ads.length; i++) {
+            ads[i].remove();
+            console.log(ads[i]);
         }
 
         // 右侧广告直接去掉
