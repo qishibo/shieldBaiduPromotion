@@ -33,7 +33,7 @@ var qii404 = {
         }
 
         // 右侧广告直接去掉
-        document.querySelector('#content_right').style.display = 'none';
+        document.querySelector('#content_right').remove();
     },
 
     /*
