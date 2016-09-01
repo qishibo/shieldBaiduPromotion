@@ -46,9 +46,8 @@ var qii404 = {
             console.log(ads[i]);
         }
 
-        document.querySelector('#content_right').style.display='none';
-
         // 右侧广告
+        document.querySelector('#content_right').style.display='none';
         this.removeRight();
     },
 

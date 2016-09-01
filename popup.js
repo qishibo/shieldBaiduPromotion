@@ -47,7 +47,7 @@ var qii404 = {
      */
     changeAdStatus: function(option) {
         chrome.storage.sync.set({'right_ad_switch': option}, function() {
-          console.log('save success! switch is ' + option)
+            console.log('save success! switch is ' + option)
         });
 
         document.querySelector('.status-tips').innerHTML = '开关设置成功，刷新页面即可';
