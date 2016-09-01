@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>屏蔽百度推广 | qii404</title>
+    <style type="text/css">
+        body{
+            width: 165px;
+            height: 120px;
+            background: lightgrey;
+        }
+        .right-ad-switch{
+            padding: 5px;
+            font-size: 200%;
+            font-weight: bold;
+            color: white;
+            cursor: pointer;
+            border: 2px solid #EBEEF9;
+            display: block;
+        }
+
+        .right-ad-switch:hover{
+            border: 2px solid #c1c3c7;
+        }
+
+        .right-ad-active{
+            background: #858a9c;
+        }
+    </style>
+</head>
+<body>
+
+    <a id="right-ad-switch-1" class="right-ad-switch" op='1'>显示右侧推荐</a>
+    <br>
+    <a id="right-ad-switch-0" class="right-ad-switch" op='0'>关闭右侧推荐</a>
+    <br>
+    <span class="status-tips"></span>
+
+    <script type="text/javascript" src='popup.js'></script>
+</body>
+</html>

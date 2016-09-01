@@ -1,23 +1,30 @@
 {
     "name": "屏蔽百度推广",
     "description": "如果你不想看到百度搜索的推广，可以试试这个插件...",
-    "version": "0.0.4",
+    "version": "0.0.5",
     "manifest_version": 2,
-    "permissions" : ["contextMenus", "tabs","http://*/"],
+    "permissions" : ["contextMenus", "tabs","http://*/", "storage"],
+
     "content_scripts":[{
         "matches":["http://www.baidu.com/*", "https://www.baidu.com/*"],
         "js":["Hide.js"]
     }],
+
     "icons": {
       "16": "16.png",
       "48": "48.png",
       "128": "128.png"
     },
+
     "browser_action": {
         "default_icon": {
             "16": "16.png",
             "48": "48.png",
             "128": "128.png"
-        }
-    }
+        },
+
+        "default_popup": "popup.html"
+    },
+
+    "options_page": "options.html"
 }

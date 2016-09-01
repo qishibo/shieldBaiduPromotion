@@ -19,6 +19,20 @@ var qii404 = {
     },
 
     /*
+     * 根据设置关掉右侧广告
+     */
+    removeRight: function() {
+        chrome.storage.sync.get('right_ad_switch', function(data) {
+            if (data['right_ad_switch'] == 1) {
+                document.querySelector('#content_right').style.display='block';
+            }
+            else {
+                document.querySelector('#content_right').remove();
+            }
+        });
+    },
+
+    /*
      * 清理
      */
     removeAds: function() {
@@ -32,8 +46,10 @@ var qii404 = {
             console.log(ads[i]);
         }
 
-        // 右侧广告直接去掉
-        document.querySelector('#content_right').remove();
+        document.querySelector('#content_right').style.display='none';
+
+        // 右侧广告
+        this.removeRight();
     },
 
     /*
