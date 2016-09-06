@@ -2,11 +2,75 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <title>屏蔽百度推广-设置页 | qii404</title>
+    <title>屏蔽设置 | qii404</title>
+    <style type="text/css">
+        body{
+            background: lightgrey;
+            font-family: Arial;
+
+        }
+
+        header{
+            margin-left: 50px;
+        }
+
+        .container{
+            width: 330px;
+            padding-left: 50px;
+            padding-top: 20px;
+        }
+
+        .options{
+            height: 100px;
+        }
+
+        .right-ad-switch{
+            border-radius: 5px;
+            padding: 5px;
+            font-size: 200%;
+            font-weight: bold;
+            color: white;
+            cursor: pointer;
+            border: 2px solid #EBEEF9;
+            display: block;
+        }
+
+        .right-ad-switch:hover{
+            border: 2px solid #c1c3c7;
+        }
+
+        .right-ad-active{
+            background: #858a9c;
+        }
+
+        .info{
+            margin-top: 300px;
+        }
+    </style>
 </head>
 <body>
-    <h2>插件设置页</h2>
-    <p>从插件管理页的【选项】按钮能够点到这里</p>
-    <p>直接点击插件图标就能设置是否展示右侧广告啦，先不用这里~</p>
+
+    <header>
+        <h1>屏蔽百度推广-设置页</h1>
+    </header>
+
+    <div class="container">
+        <div class="options">
+            <a id="right-ad-switch-1" class="right-ad-switch" op='1'>显示右侧推荐</a>
+            <br>
+            <a id="right-ad-switch-0" class="right-ad-switch" op='0'>关闭右侧推荐</a>
+            <br>
+            <span class="status-tips"></span>
+        </div>
+
+        <div class="info">
+            <p>感谢你使用这个插件，都是为了屏蔽广告，大家都明白的~</p>
+            <p>作者博客：<a href="http://qii404.me" target="blank">qii404.me</a></p>
+            <p>作者微博：<a href="http://weibo.com/shiboooo?profile_ftype=1&is_hot=1" target="blank">齐士博</a></p>
+        </div>
+    </div>
+
+    <script type="text/javascript" src='popup.js'></script>
 </body>
 </html>
+
