@@ -19,6 +19,64 @@ var qii404 = {
     },
 
     /*
+     * 清理
+     */
+    removeAds: function() {
+
+        console.log('start normal ads...');
+
+        this.removeNormalAds();
+        this.removeRightAds();
+
+        var this_ = this;
+        setTimeout(function() {
+            console.log('start mock ads...');
+            this_.removeMockAds();
+        }, 2000);
+    },
+
+    /*
+     * 删除通用形式广告
+     */
+    removeNormalAds: function() {
+        var ads = document.querySelectorAll('#content_left>div:not([class*="result"]):not([class="leftBlock"])');
+
+        for (var i = 0; i < ads.length; i++) {
+            ads[i].remove();
+            console.log(ads[i]);
+        }
+    },
+
+    /*
+     * 删除一些假冒是搜索结果的特殊广告
+     */
+    removeMockAds: function() {
+        var ads = document.querySelectorAll('#content_left>div[class*="result"]');
+
+        for (var i = 0; i < ads.length; i++) {
+
+            var ms = ads[i].querySelectorAll('.m');
+
+            for (var j = 0; j < ms.length; j++) {
+                if (ms[j].innerHTML === '广告') {
+                    ads[i].remove();
+
+                    console.log(ads[i]);
+                    break;
+                }
+            }
+        }
+    },
+
+    /*
+     * 删除右侧【广告？ or 推荐？】
+     */
+    removeRightAds: function() {
+        document.querySelector('#content_right').style.display='none';
+        this.removeRight();
+    },
+
+    /*
      * 根据设置关掉右侧广告
      */
     removeRight: function() {
@@ -30,25 +88,6 @@ var qii404 = {
                 document.querySelector('#content_right').remove();
             }
         });
-    },
-
-    /*
-     * 清理
-     */
-    removeAds: function() {
-
-        console.log('start...');
-
-        var ads = document.querySelectorAll('#content_left>div:not([class*="result"]):not([class="leftBlock"])');
-
-        for (var i = 0; i < ads.length; i++) {
-            ads[i].remove();
-            console.log(ads[i]);
-        }
-
-        // 右侧广告
-        document.querySelector('#content_right').style.display='none';
-        this.removeRight();
     },
 
     /*
