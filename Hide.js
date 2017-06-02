@@ -51,11 +51,11 @@ var qii404 = {
      * 删除一些假冒是搜索结果的特殊广告
      */
     removeMockAds: function() {
-        var ads = document.querySelectorAll('#content_left>div[class*="result"]');
+        var ads = document.querySelectorAll('#content_left>div');
 
         for (var i = 0; i < ads.length; i++) {
 
-            var ms = ads[i].querySelectorAll('.m');
+            var ms = ads[i].querySelectorAll('span');
 
             for (var j = 0; j < ms.length; j++) {
                 if (ms[j].innerHTML === '广告') {
