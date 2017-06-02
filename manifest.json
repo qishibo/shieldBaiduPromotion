@@ -1,7 +1,7 @@
 {
     "name": "屏蔽百度推广",
     "description": "如果你不想看到百度搜索的推广，可以试试这个插件...",
-    "version": "0.0.6",
+    "version": "0.0.7",
     "manifest_version": 2,
     "permissions" : ["contextMenus", "tabs","http://*/", "storage"],
 
