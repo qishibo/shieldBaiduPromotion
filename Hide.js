@@ -10,35 +10,45 @@
 var qii404 = {
 
     /*
+     * 右侧推荐开关设置
+     */
+    rightSwitch: 1,
+
+    /*
      * 初始化
      */
     init: function() {
-
+        this.initRightSwitch();
         this.bindAction();
         this.removeAds();
+    },
+
+    /*
+     * 初始化右侧推荐开关
+     */
+    initRightSwitch: function() {
+        var this_ = this;
+        chrome.storage.sync.get('right_ad_switch', function(data) {
+            this_.rightSwitch = data['right_ad_switch'];
+            this_.removeRightAds();
+        });
     },
 
     /*
      * 清理
      */
     removeAds: function() {
-
-        console.log('start normal ads...');
-
-        this.removeNormalAds();
+        // this.removeNormalAds();
+        this.removeMockAds();
         this.removeRightAds();
-
-        var this_ = this;
-        setTimeout(function() {
-            console.log('start mock ads...');
-            this_.removeMockAds();
-        }, 2000);
     },
 
     /*
      * 删除通用形式广告
      */
     removeNormalAds: function() {
+        console.log('start removing normal ads...');
+
         var ads = document.querySelectorAll('#content_left>div:not([class*="result"]):not([class="leftBlock"])');
 
         for (var i = 0; i < ads.length; i++) {
@@ -51,12 +61,11 @@ var qii404 = {
      * 删除一些假冒是搜索结果的特殊广告
      */
     removeMockAds: function() {
+        console.log('start removing mock ads...');
         var ads = document.querySelectorAll('#content_left>div');
 
         for (var i = 0; i < ads.length; i++) {
-
             var ms = ads[i].querySelectorAll('span');
-
             for (var j = 0; j < ms.length; j++) {
                 if (ms[j].innerHTML === '广告') {
                     ads[i].remove();
@@ -72,36 +81,29 @@ var qii404 = {
      * 删除右侧【广告？ or 推荐？】
      */
     removeRightAds: function() {
-        document.querySelector('#content_right').style.display='none';
-        this.removeRight();
-    },
+        var rightElement = document.querySelector('#content_right');
 
-    /*
-     * 根据设置关掉右侧广告
-     */
-    removeRight: function() {
-        chrome.storage.sync.get('right_ad_switch', function(data) {
-            if (data['right_ad_switch'] == 1) {
-                document.querySelector('#content_right').style.display='block';
+        if (rightElement) {
+            if (this.rightSwitch != 1) {
+                // rightElement.style.display='none';
+                rightElement.remove();
             }
-            else {
-                document.querySelector('#content_right').remove();
-            }
-        });
+        }
     },
 
     /*
      * 绑定
      */
     bindAction: function() {
-
         var this_ = this;
-
         var observer = new MutationObserver(function() {
             this_.removeAds();
         });
 
-        observer.observe(document.querySelector('#wrapper_wrapper'), {'childList': true});
+        observer.observe(
+            document.querySelector('#wrapper_wrapper'),
+            {'childList': true, 'characterData': false, 'attributes': false, 'subtree': true}
+        );
     }
 }
 
