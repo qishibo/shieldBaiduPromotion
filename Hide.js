@@ -39,7 +39,7 @@ var qii404 = {
      */
     removeAds: function() {
         // this.removeNormalAds();
-        this.removeMockAds();
+        this.removeMarkedAds();
         this.removeRightAds();
     },
 
@@ -58,10 +58,11 @@ var qii404 = {
     },
 
     /*
-     * 删除一些假冒是搜索结果的特殊广告
+     * 删除带有广告标识的广告
      */
-    removeMockAds: function() {
-        console.log('start removing mock ads...');
+    removeMarkedAds: function() {
+        console.log('start removing marked ads...');
+
         var ads = document.querySelectorAll('#content_left>div');
 
         for (var i = 0; i < ads.length; i++) {
@@ -70,7 +71,7 @@ var qii404 = {
                 if (ms[j].innerHTML === '广告') {
                     ads[i].remove();
 
-                    console.log(ads[i]);
+                    console.log('removed', ads[i]);
                     break;
                 }
             }
@@ -83,11 +84,8 @@ var qii404 = {
     removeRightAds: function() {
         var rightElement = document.querySelector('#content_right');
 
-        if (rightElement) {
-            if (this.rightSwitch != 1) {
-                // rightElement.style.display='none';
-                rightElement.remove();
-            }
+        if (rightElement && (this.rightSwitch != 1)) {
+            rightElement.remove();
         }
     },
 

@@ -1,7 +1,7 @@
 {
     "name": "屏蔽百度推广",
     "description": "为了你，为了你的家人在百度搜索的时候不至于被广告所蒙蔽",
-    "version": "0.0.9",
+    "version": "0.1.0",
     "manifest_version": 2,
     "permissions" : ["contextMenus", "tabs","http://*/", "storage"],
 
