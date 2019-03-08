@@ -2,7 +2,7 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <title>屏蔽设置 | qii404</title>
+    <title>屏蔽百度推广设置</title>
     <style type="text/css">
         body{
             background: lightgrey;
@@ -20,31 +20,81 @@
             padding-top: 20px;
         }
 
-        .options{
-            height: 100px;
+        .text {
+            display: none;
+        }
+        .on {
+            color:#333;
+        }
+        .off {
+            color:#eee;
+        }
+        .circle {
+            position: absolute;
+            display: inline-block;
+        }
+        #radio {
+            display: none;
+        }
+        #radio ~label {
+            background-color: #aeaaaa;
+        }
+        #radio ~label .circle {
+            left: 0;
+            transition: all 0.3s;
+            --webkit-transition: all 0.3s;
+        }
+        #radio ~label .on {
+            display: none;
+        }
+        #radio ~ label .off {
+            display: inline-block;
+            padding-left: 30px;
+        }
+        #radio:checked ~ label {
+            background: #65f065;
+        }
+        #radio:checked ~label .circle {
+            left: 34px;
+        }
+        #radio:checked ~label .on {
+            display: inline-block;
+            padding-left: 11px;
+        }
+        #radio:checked ~ label .off {
+            display: none;
+        }
+        label {
+            display: inline-block;
+            position: relative;
+            height: 26px;
+            width: 60px;
+            border-top-left-radius: 15px 50%;
+            border-bottom-left-radius: 15px 50%;
+            border-top-right-radius: 15px 50%;
+            border-bottom-right-radius: 15px 50%;
+        }
+        label .circle {
+            display: inline-block;
+            height: 22px;
+            width: 22px;
+            border-radius: 50%;
+            border: 2px solid #d5d2d2;
+            background-color: #eee;
+        }
+        label .text {
+            line-height: 27px;
+            font-family: sans-serif;
+        }
+        .btn-desc {
+            font-size: 110%;
+        }
+        .btn-extra {
+            color: grey;
         }
 
-        .right-ad-switch{
-            border-radius: 5px;
-            padding: 5px;
-            font-size: 200%;
-            font-weight: bold;
-            color: white;
-            cursor: pointer;
-            border: 2px solid #EBEEF9;
-            display: block;
-        }
-
-        .right-ad-switch:hover{
-            border: 2px solid #c1c3c7;
-        }
-
-        .right-ad-active{
-            background: #858a9c;
-        }
-
-        .info{
-            margin-top: 300px;
+        .info {
+            margin-top: 50px;
         }
     </style>
 </head>
@@ -55,13 +105,15 @@
     </header>
 
     <div class="container">
-        <div class="options">
-            <a id="right-ad-switch-1" class="right-ad-switch" op='1'>显示右侧推荐</a>
-            <br>
-            <a id="right-ad-switch-0" class="right-ad-switch" op='0'>关闭右侧推荐</a>
-            <br>
-            <span class="status-tips"></span>
-        </div>
+        <span class="btn-desc">右侧推荐</span>
+        <input type="checkbox" id="radio" name="switch">
+        <label for="radio" class="radio">
+            <span class="circle"></span>
+            <span class="text on">ON</span>
+            <span class="text off">OFF</span>
+        </label>
+
+        <p id="desc-extra" class="btn-extra">该开关会影响百度搜索结果页右侧的热门推荐等模块</p>
 
         <div class="info">
             <p>感谢你使用这个插件，都是为了屏蔽广告，大家都明白的~</p>
